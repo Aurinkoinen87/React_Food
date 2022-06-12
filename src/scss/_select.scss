@@ -1,0 +1,38 @@
+.selection {
+  display: grid;
+  grid-template-columns: 10fr 2fr;
+  
+  .btn-block {
+    &__list {
+    max-width: 900px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    }
+    &__item {
+      padding: 20px 30px;
+      background: rgba(#F3F3F3, .5);
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 17px;
+      line-height: 20px;
+      text-align: center;
+      cursor: pointer;
+    }
+    &__item--active {
+      background-color: $black;
+      color: #fff;
+    }
+  }
+  .sort-by {
+    display: flex;
+    margin: 13px 10px 0;
+    &__list {
+      padding-left: 30px;
+    }
+    &__sort {
+      font-weight: 700;
+    }
+  }
+  
+  }

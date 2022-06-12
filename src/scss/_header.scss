@@ -1,0 +1,30 @@
+.header {
+  &__box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+.logo {
+  max-width: 450px;
+  display: flex;
+  &__title {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+  }
+  &__text {
+    color: $grey-text-main;
+    line-height: 20px;
+  }
+  &__text-block {
+    padding-left: 15px;
+  }
+}
+
+.header__line {
+  height: 1px;
+  width: 100%;
+  background-color: rgba($grey-text-main, .1);
+  margin: 40px 0;
+}
+}
