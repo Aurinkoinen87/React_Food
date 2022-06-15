@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './scss/style.scss';
+import * as axios from 'axios'
 import { Pizza } from './components/Pizza'
 import { Select } from './components/Select'
 import { Header } from './components/Header'
@@ -9,6 +10,22 @@ import { Header } from './components/Header'
 
 
 function App() {
+
+  let [data, setData] = useState([])
+
+  useEffect(()=> {
+    axios.get('http://localhost:7000/')
+    .then(data=> {
+      setData(data.data)
+      console.log(data.data)
+    })
+    .catch(err=> console.log(err))
+  }, [])
+
+
+
+
+
   return (
 <div class="wrapper">
 
@@ -21,7 +38,7 @@ function App() {
     <h2 class="menu__title">All pizzas</h2>
     <div class="menu__box">
 
-    {[1,2,3,4,5,6,7,8].map(p=> {return <Pizza />})}
+    {data.map(o => <Pizza {...o} key={o.id} />)}
 
 
     </div>

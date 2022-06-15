@@ -1,20 +1,20 @@
-
+import React, { useState } from 'react'
 
 
 
 
 export function Select() {
+
+  let categories = ['all', 'with meat', 'vegetarian', 'cooked on grill', 'spicy', 'cheezy']
+
+
   return (
     <div class="selection">
 
   <div class="btn-block">
     <ul class="btn-block__list">
-      <li class="btn-block__item btn-block__item--active">all</li>
-      <li class="btn-block__item">with meat</li>
-      <li class="btn-block__item">vegetarian</li>
-      <li class="btn-block__item">cooked on grill</li>
-      <li class="btn-block__item">spicy</li>
-      <li class="btn-block__item">cheezy</li>
+      <li class="btn-block__item btn-block__item--active"></li>
+
     </ul>
   </div>
 
