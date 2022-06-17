@@ -11,11 +11,13 @@ import { Header } from './components/Header'
 
 function App() {
 
+  let [initData, setInitData] = useState([])
   let [data, setData] = useState([])
 
   useEffect(()=> {
     axios.get('http://localhost:7000/')
     .then(data=> {
+      setInitData(data.data)
       setData(data.data)
       console.log(data.data)
     })
@@ -23,7 +25,15 @@ function App() {
   }, [])
 
 
-
+const selectCategory = (num = 'all') => {
+  if(num == 'all') {
+    setData(initData)
+    return
+  }
+  console.log(num)
+  data = initData.filter(o=> o.category == num)
+  setData(data)
+}
 
 
   return (
@@ -31,7 +41,7 @@ function App() {
 
     <Header />
 
-    <Select />
+    <Select select={selectCategory}/>
 
 <main class="main">
   <section class="menu">
