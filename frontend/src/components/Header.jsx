@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 
 
 
@@ -7,7 +8,7 @@ export function Header() {
     <header class="header">
 
   <div class="header__box">
-
+    <Link to={'/'}>
     <div class="logo">
       <svg class="icon icon-local_pizza">
         <use xlinkHref="icons.svg#icon-local_pizza"></use>
@@ -17,8 +18,8 @@ export function Header() {
         <p class="logo__text">the most delicious pizza in your town</p>
       </div>
     </div>
-
-    <a class="cart" href="#">
+    </Link>
+    <Link class="cart" to={'cart'}>
       <div class="cart__inner">
         <span class="cart__price">520</span>
 
@@ -30,7 +31,7 @@ export function Header() {
         </div>
 
       </div>
-    </a>
+    </Link>
 
 
   </div>

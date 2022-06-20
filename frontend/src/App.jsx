@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './scss/style.scss';
 import * as axios from 'axios'
-import { Pizza } from './components/Pizza'
-import { Select } from './components/Select'
+
 import { Header } from './components/Header'
+import { Cart } from './components/Cart'
+import { Main } from './components/Main'
+import { EmptyCart } from './components/EmptyCart'
+
 import {
   Routes,
   Route,
@@ -22,7 +25,6 @@ function App() {
     .then(data=> {
       setInitData(data.data)
       setData(data.data)
-      console.log(data.data)
     })
     .catch(err=> console.log(err))
   }, [])
@@ -33,7 +35,6 @@ const selectCategory = (num = 'all') => {
     setData(initData)
     return
   }
-  console.log(num)
   data = initData.filter(o=> o.category == num)
   setData(data)
 }
@@ -44,18 +45,15 @@ const selectCategory = (num = 'all') => {
 
     <Header />
 
-    <Select select={selectCategory}/>
 
 <main class="main">
-  <section class="menu">
-    <h2 class="menu__title">All pizzas</h2>
-    <div class="menu__box">
-
-    {data.map(o => <Pizza {...o} key={o.id} />)}
-
-
-    </div>
-  </section>
+    
+    <Routes>
+      <Route path="/" element={<Main data={data} selectCategory={selectCategory} />}/>
+      <Route path="/cart" element={<Cart />}/>
+      <Route path="/empty_cart" element={<EmptyCart />}/>
+      <Route path="*" element={<div class="not-found">Nothing was found</div>}/>
+    </Routes>
 </main>
 
 
