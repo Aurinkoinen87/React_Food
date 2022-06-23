@@ -2,13 +2,12 @@ import React, { useState } from 'react';
 
 
 
-export function SelectPopup() {
+export function SelectPopup({ setOption, option }) {
 
-  let options = ['most popular', 'price', 'alphabete']
 
   let [open, setOpen] = useState(false)
 
-  let [option, setOption] = useState(options[0])
+  let options = ['most popular', 'price', 'alphabete']
 
   const onClickHandler = (n) => {
     setOption(n)
@@ -16,9 +15,9 @@ export function SelectPopup() {
   }
   return (
     <div class="sort-by">
-    <div class="sort-by__sort">Sort by: <span class="sort-by__text" onClick={()=> setOpen(!open)} >{option}</span></div>
+    <div class="sort-by__sort">Sort by: <span class="sort-by__text" onClick={()=> setOpen(!open)} >{options[option]}</span></div>
     {open && <ul class="sort-by__list">
-      {options.map((o,i)=> <li class="sort-by__item" onClick={()=> onClickHandler(o)} key={i}>{o}</li> )}
+      {options.map((o,i)=> <li class="sort-by__item" onClick={()=> onClickHandler(i)} key={i}>{o}</li> )}
     </ul>}
   </div>
   )

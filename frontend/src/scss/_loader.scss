@@ -1,0 +1,51 @@
+.loading {
+  height: 50vh;
+}
+
+
+.preloader {
+  width: 250px;
+  height: 250px;
+  position: relative;
+  margin: 0 auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* .circles{
+  transform: rotate(-90deg);
+} */
+
+#inner {
+ 
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+  animation: animate 3s ease-in-out infinite;
+}
+
+@keyframes animate{
+
+  0%{
+    stroke-dasharray: 0 314;
+    stroke-dashoffset: 314;
+  }
+  
+  50%{
+    stroke-dasharray: 157 157;
+    stroke-dashoffset: 314;
+  }
+
+  75%{
+    stroke-dasharray: 157 157;
+    stroke-dashoffset: 157;
+  }
+
+  
+  100%{
+    stroke-dasharray: 0 314;
+    stroke-dashoffset: 0;
+  }
+}
+
+
