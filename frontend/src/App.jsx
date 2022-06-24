@@ -33,6 +33,7 @@ function App() {
     })
     .catch(err=> console.log(err))
     // .finally(setLoading(false))??
+    window.scrollTo(0, 0)
   }, [])
 
 
@@ -55,6 +56,9 @@ if(option == 1){
   data = [...data].sort((a,b)=> b.price - a.price)
 }
 if(option == 2){
+  data = [...data].sort((a,b)=> a.price - b.price)
+}
+if(option == 3){
   data = [...data].sort((a,b)=> {
     if(a.title > b.title) return 1
     if(a.title < b.title) return -1

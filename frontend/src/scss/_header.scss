@@ -21,10 +21,61 @@
   }
 }
 
-.header__line {
+  &__line {
   height: 1px;
   width: 100%;
   background-color: rgba($grey-text-main, .1);
   margin: 40px 0;
+}
+.cart {
+  width: 150px;
+  height: 50px;
+  background-color: $orange;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+
+  &__inner {
+    display: flex;  
+    width: 100%;
+    justify-content: space-evenly;
+  }
+
+  &__price,
+  &__quantity {
+    display: inline-block;
+    font-weight: 700;
+    font-size: 17px;
+    color: $white;
+    position: relative;
+  }
+  &__quantity {
+    margin-left: 8px;
+  }
+  &__price {
+    &::after {
+      position: absolute;
+      content: '';
+      right: -12px;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background-color: rgba($white, .3)
+    }
+  }
+}
+.search{
+  position: relative;
+  &__input {
+  padding: 11px;
+  padding-left: 47px;
+  border-radius: 30px;
+  border: none;
+}
+&__svg {
+  position: absolute;
+  top: 10px;
+  left: 8px;
+}
 }
 }

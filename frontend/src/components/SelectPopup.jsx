@@ -7,7 +7,7 @@ export function SelectPopup({ setOption, option }) {
 
   let [open, setOpen] = useState(false)
 
-  let options = ['most popular', 'price', 'alphabete']
+  let options = ['most popular', 'price (desc)', 'price (asc)', 'alphabete']
 
   const onClickHandler = (n) => {
     setOption(n)

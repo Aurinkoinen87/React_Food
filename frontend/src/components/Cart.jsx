@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import { SvgSelector } from "./SvgSelector"
 
 
 
@@ -10,17 +11,12 @@ return (
         <div class="cart-top">
 
           <div class="cart-top__cart">
-            <svg class="icon cart-order">
-              <use xlinkHref="icons.svg#icon-cart"></use>
-            </svg>
+            <SvgSelector name={'cart'} classSelect={'cart-order'} />
             <h3 class="cart-top__title">Cart</h3>
           </div>
 
           <div class="cart-top__bin">
-
-            <svg class="icon icon-bin">
-              <use xlinkHref="icons.svg#icon-bin"></use>
-            </svg>
+          <SvgSelector name={'bin'} />
 
             <div class="cart-top__bin-text">Clean cart</div>
           </div>
@@ -42,20 +38,17 @@ return (
             </div>
 
             <div class="cart-pizza__val">
-              <svg class="icon icon-minus">
-                <use xlinkHref="icons.svg#icon-minus"></use>
-              </svg>
+            <SvgSelector name={'minus'} />
+
               <span class="cart-pizza__num">2</span>
-              <svg class="icon icon-plus">
-                <use xlinkHref="icons.svg#icon-plus"></use>
-              </svg>
+              <SvgSelector name={'plus'} classSelect={'icon-plus'} />
+
+
             </div>
 
             <div class="cart-pizza__price">10$</div>
+            <SvgSelector name={'cancel-circle'} />
 
-            <svg class="icon icon-cancel-circle">
-              <use xlinkHref="icons.svg#icon-cancel-circle"></use>
-            </svg>
           </div>
 
         </div>
@@ -142,9 +135,7 @@ return (
         <div class="btn-block">
         <Link to={'/'}>
           <div class="btn-return">
-            <svg class="icon icon-arrow-left2">
-              <use xlinkHref="icons.svg#icon-arrow-left2"></use>
-            </svg>
+          <SvgSelector name={'arrow-left'} />
 
             <div class="btn-return__text">Back</div>
 

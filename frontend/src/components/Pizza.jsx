@@ -1,17 +1,7 @@
-import pizza from '../img/4b3a81ba-04b5-4f51-9fd4-a0867ee000de.png'
 import React, { useState } from 'react'
+import { SvgSelector } from "./SvgSelector"
 
 
-// {
-//   "id": 0,
-//   "imageUrl": "https://dodopizza.azureedge.net/static/Img/Products/f035c7f46c0844069722f2bb3ee9f113_584x584.jpeg",
-//   "title": "Пепперони Фреш с перцем",
-//   "types": [0, 1],
-//   "sizes": [26, 30, 40],
-//   "price": 803,
-//   "category": 0,
-//   "rating": 4
-// }
 
 
 
@@ -44,9 +34,7 @@ return (
     <div class="pizza__purchase">
       <span class="pizza__price">{price}</span>
       <button class="pizza__add" onClick={addItem}>
-        <svg class="icon icon-plus-first">
-          <use xlinkHref="icons.svg#icon-plus"></use>
-        </svg>
+        <SvgSelector name={'plus'} classSelect={'icon-plus-first'} />
         <span class="pizza__add-text">Add</span>
         {count? <span class="pizza__add-count">{count}</span> : ''}
       </button>
