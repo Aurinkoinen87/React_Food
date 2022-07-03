@@ -15,11 +15,16 @@ import {
 
 
 
+
+export const Context = React.createContext('')
+
+
 function App() {
 
   let [initData, setInitData] = useState([])
   let [data, setData] = useState([])
   let [loading, setLoading] = useState(true)
+  let [value, setValue] = useState('')
 
   useEffect(()=> {
     axios.get('http://localhost:7000/')
@@ -67,25 +72,40 @@ if(option == 3){
     }
 
 
+const findPizzaHelper = (str) => {
+  data = data.filter(o=> o.title.toLowerCase().includes(str.toLowerCase()))
+} 
+    
+const findPizza = (val) => {
+  findPizzaHelper(val)
+  setData(data)
+}
+
+if(value){
+  data = data.filter(o=> o.title.toLowerCase().includes(value.toLowerCase()))
+}
+
+
+
 
 
   return (
 <div class="wrapper">
-
+<Context.Provider value={{ data, loading, selectCategory, setOption, option, findPizza, value, setValue, initData, setData }}>
     <Header />
 
 
 <main class="main">
 
     <Routes>
-      <Route path="/" element={<Main data={data} loading={loading} selectCategory={selectCategory} setOption={setOption} option={option} />}/>
+      <Route path="/" element={<Main />}/>
       <Route path="/cart" element={<Cart />}/>
       <Route path="/empty_cart" element={<EmptyCart />}/>
       <Route path="*" element={<div class="not-found">Nothing was found</div>}/>
     </Routes>
 </main>
 
-
+</Context.Provider>
 </div>
   );
 }

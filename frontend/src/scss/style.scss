@@ -212,11 +212,12 @@
   }
 }
 
-
+.no_pizza_msg,
 .not-found {
   text-align: center;
   font-weight: 900;
   font-size: 40px;
   color: rgba($grey-text-main, .8);
   padding: 220px 0;
+  margin: 0 auto;
 }

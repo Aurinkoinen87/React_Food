@@ -34,12 +34,13 @@
     &__list {
       position: absolute;
       top: 27px;
-      right: -21px;
+      right: -26px;
       background-color: #fff;
-      text-align: center;
+      text-align: start;
       width: 140px;
       border: 1px solid $grey-text-main;
       border-top: none;
+      padding: 0 18px;
     }
     &__sort {
       font-weight: 700;

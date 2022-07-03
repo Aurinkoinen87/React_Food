@@ -71,11 +71,27 @@
   padding-left: 47px;
   border-radius: 30px;
   border: none;
+
 }
-&__svg {
+
+}
+}
+
+
+.clear-input-svg {
+  position: absolute;
+  top: 12px;
+  right: 7px;
+  opacity: .5;
+  fill:rgba(138, 138, 138, 0.655);
+  cursor: pointer;
+  &:hover {
+    fill:rgb(17, 16, 16)
+  }
+}
+
+.search__svg {
   position: absolute;
   top: 10px;
   left: 8px;
-}
-}
 }
