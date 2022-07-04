@@ -25,6 +25,9 @@ function App() {
   let [data, setData] = useState([])
   let [loading, setLoading] = useState(true)
   let [value, setValue] = useState('')
+  let [category, setCategory] = useState('all')
+  let [currentPage, setCurrentPage] = useState(1)
+  let [itemsPerPage] = useState(4)
 
   useEffect(()=> {
     axios.get('http://localhost:7000/')
@@ -43,6 +46,8 @@ function App() {
 
 
 const selectCategory = (num = 'all') => {
+  setCategory(num)
+  setCurrentPage(1)
   if(num == 'all') {
     setData(initData)
     return
@@ -51,6 +56,12 @@ const selectCategory = (num = 'all') => {
   setData(data)
 }
 
+
+const clearInput = () => {
+  setValue('')
+  setData(initData)
+  selectCategory(category)
+}
 
 let [option, setOption] = useState(0)
 
@@ -91,7 +102,7 @@ if(value){
 
   return (
 <div class="wrapper">
-<Context.Provider value={{ data, loading, selectCategory, setOption, option, findPizza, value, setValue, initData, setData }}>
+<Context.Provider value={{ data, loading, selectCategory, setOption, option, findPizza, value, setValue, initData, setData, category, setCategory, clearInput, currentPage, setCurrentPage, itemsPerPage }}>
     <Header />
 
 

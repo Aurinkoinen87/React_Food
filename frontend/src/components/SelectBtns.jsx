@@ -1,16 +1,17 @@
-import React, { useState } from 'react'
+import React, { useContext } from 'react'
+import { Context } from '../App'
 
 
-export function SelectBtns({select}){
 
+export function SelectBtns(){
+
+  let{ category, selectCategory } = useContext(Context)
 
 
   let categories = ['with meat', 'vegetarian', 'cooked on grill', 'spicy', 'cheezy']
-  let [cur, setCur] = useState('all')
 
   const onClickHandler = (val) => {
-    select(val)
-    setCur(val)
+    selectCategory(val)
   }
 
 
@@ -18,8 +19,8 @@ export function SelectBtns({select}){
   return (
     <div class="btn-block">
     <ul class="btn-block__list">
-      <li className={`btn-block__item ${cur == 'all' && "btn-block__item--active"}`} onClick={()=> onClickHandler('all')}>All</li>
-      {categories.map((n,i)=> <li className={`btn-block__item ${cur == i && "btn-block__item--active"}`} onClick={()=> onClickHandler(i)}>{n}</li>)}
+      <li className={`btn-block__item ${category == 'all' && "btn-block__item--active"}`} onClick={()=> onClickHandler('all')}>All</li>
+      {categories.map((n,i)=> <li className={`btn-block__item ${category == i && "btn-block__item--active"}`} onClick={()=> onClickHandler(i)}>{n}</li>)}
     </ul>
   </div>
   )

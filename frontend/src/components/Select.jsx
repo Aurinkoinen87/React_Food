@@ -4,12 +4,12 @@ import { SelectPopup } from './SelectPopup'
 
 
 
-export function Select({ select, option, setOption }) {
+export function Select({ option, setOption }) {
 
   return (
     <div class="selection">
 
-    <SelectBtns select={select} />
+    <SelectBtns />
     <SelectPopup setOption={setOption} option={option} />
     </div>
   )

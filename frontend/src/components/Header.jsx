@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom"
 import { SvgSelector } from "./SvgSelector"
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import { Context } from '../App'
 
 
 export function Header() {
 
-  let{ findPizza, value, setValue, setData, initData } = useContext(Context)
+  let{ findPizza, value, setValue, clearInput} = useContext(Context)
 
 
   const onChangeHandler = (e) => {
@@ -14,10 +14,7 @@ export function Header() {
     findPizza(e.currentTarget.value)
   }
 
-  const clearInput = () => {
-    setValue('')
-    setData(initData)
-  }
+
   return (
     <header class="header">
 
