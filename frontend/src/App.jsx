@@ -83,17 +83,14 @@ if(option == 3){
     }
 
 
-const findPizzaHelper = (str) => {
-  data = data.filter(o=> o.title.toLowerCase().includes(str.toLowerCase()))
-} 
+
     
-const findPizza = (val) => {
-  findPizzaHelper(val)
-  setData(data)
+const findPizza = (str) => {
+  data = data.filter(o=> o.title.toLowerCase().includes(str.toLowerCase()))
 }
 
 if(value){
-  data = data.filter(o=> o.title.toLowerCase().includes(value.toLowerCase()))
+  findPizza(value)
 }
 
 

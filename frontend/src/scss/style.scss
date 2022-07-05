@@ -224,10 +224,16 @@
 
 .pagination {
   margin-top: 40px;
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
   &__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin: 0 13px;
-    padding: 0 20px;
+    height: 40px;
+    width: 40px;
     border: 1px solid $orange;
     border-radius: 50%;
     font-weight: 900;
@@ -239,4 +245,14 @@
   &__highlighted {
     background-color: $orange;
   }
+  &__arrow {
+    height: 40px;
+  }
+}
+
+
+.page-left-svg,
+.page-right-svg {
+  fill: $grey-text-main;
+  cursor: pointer;
 }

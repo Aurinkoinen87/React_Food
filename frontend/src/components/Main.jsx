@@ -33,7 +33,7 @@ return (
   <>
   <Select select={selectCategory} setOption={setOption} option={option}/>
 
-    <h2 class="menu__title">All pizzas</h2>
+    <h2 class="menu__title">Menu</h2>
 
     <div class="menu__box">
     {data.length? data.slice(pageFirstItemIndex, pageLastItemIndex)
