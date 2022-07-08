@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './scss/style.scss';
 import * as axios from 'axios'
+import { useSelector, useDispatch } from 'react-redux'
+import { setCategory } from './redux/slices/filterSlice'
 
 import { Header } from './components/Header'
 import { Cart } from './components/Cart'
@@ -24,10 +26,13 @@ function App() {
   let [initData, setInitData] = useState([])
   let [data, setData] = useState([])
   let [loading, setLoading] = useState(true)
-  let [value, setValue] = useState('')
-  let [category, setCategory] = useState('all')
   let [currentPage, setCurrentPage] = useState(1)
   let [itemsPerPage] = useState(4)
+
+  const dispatch = useDispatch()
+  const { option, inputValue } = useSelector((state)=> state.filtration)
+
+
 
   useEffect(()=> {
     axios.get('http://localhost:7000/')
@@ -45,25 +50,20 @@ function App() {
   }, [])
 
 
-const selectCategory = (num = 'all') => {
-  setCategory(num)
-  setCurrentPage(1)
-  if(num == 'all') {
-    setData(initData)
-    return
+
+  const selectCategory = (num = 'all') => {
+    dispatch(setCategory(num))
+    setCurrentPage(1)
+    if(num == 'all') {
+      setData(initData)
+      return
+    }
+    data = initData.filter(o=> o.category == num)
+    setData(data)
   }
-  data = initData.filter(o=> o.category == num)
-  setData(data)
-}
 
 
-const clearInput = () => {
-  setValue('')
-  setData(initData)
-  selectCategory(category)
-}
 
-let [option, setOption] = useState(0)
 
 if(option == 0){
     data = [...data].sort((a,b)=> b.rating - a.rating)
@@ -89,8 +89,8 @@ const findPizza = (str) => {
   data = data.filter(o=> o.title.toLowerCase().includes(str.toLowerCase()))
 }
 
-if(value){
-  findPizza(value)
+if(inputValue){
+  findPizza(inputValue)
 }
 
 
@@ -99,7 +99,7 @@ if(value){
 
   return (
 <div class="wrapper">
-<Context.Provider value={{ data, loading, selectCategory, setOption, option, findPizza, value, setValue, initData, setData, category, setCategory, clearInput, currentPage, setCurrentPage, itemsPerPage }}>
+<Context.Provider value={{ data, loading, selectCategory, findPizza, initData, setData, currentPage, setCurrentPage, itemsPerPage }}>
     <Header />
 
 

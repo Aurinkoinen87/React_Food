@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux'
+import { setOption } from '../redux/slices/filterSlice'
 
 
+export function SelectPopup() {
 
-export function SelectPopup({ setOption, option }) {
-
+  const dispatch = useDispatch()
+  const { option } = useSelector((state)=> state.filtration)
 
   let [open, setOpen] = useState(false)
 
   let options = ['most popular', 'price (desc)', 'price (asc)', 'alphabete']
 
   const onClickHandler = (n) => {
-    setOption(n)
+    dispatch(setOption(n))
     setOpen(false)
   }
   return (

@@ -1,11 +1,13 @@
 import React, { useContext } from 'react'
 import { Context } from '../App'
-
+import { useSelector } from 'react-redux'
 
 
 export function SelectBtns(){
 
-  let{ category, selectCategory } = useContext(Context)
+  let{ selectCategory } = useContext(Context)
+
+  const category = useSelector((state)=> state.filtration.category)
 
 
   let categories = ['with meat', 'vegetarian', 'cooked on grill', 'spicy', 'cheezy']

@@ -10,7 +10,7 @@ export function Select({ option, setOption }) {
     <div class="selection">
 
     <SelectBtns />
-    <SelectPopup setOption={setOption} option={option} />
+    <SelectPopup />
     </div>
   )
 } 

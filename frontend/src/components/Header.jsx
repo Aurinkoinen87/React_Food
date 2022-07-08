@@ -1,18 +1,9 @@
 import { Link } from "react-router-dom"
 import { SvgSelector } from "./SvgSelector"
-import React, { useContext } from 'react';
-import { Context } from '../App'
-
+import { SearchInput } from './SearchInput'
 
 export function Header() {
 
-  let{ findPizza, value, setValue, clearInput} = useContext(Context)
-
-
-  const onChangeHandler = (e) => {
-    setValue(e.currentTarget.value)
-    findPizza(e.currentTarget.value)
-  }
 
 
   return (
@@ -29,13 +20,7 @@ export function Header() {
     </div>
     </Link>
 
-    { window.location.pathname == '/' &&
-    <div class="search">
-    <SvgSelector name={'search'} />
-    <input class="search__input" type="text" placeholder="find your pizza..." value={value} onChange={(e)=> onChangeHandler(e)}/>
-    {value && <span onClick={clearInput}><SvgSelector name={'clear-input'} /></span>}
-    </div>
-    }
+    <SearchInput />
 
 
     <Link class="cart" to={'cart'}>

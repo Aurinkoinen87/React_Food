@@ -13,7 +13,7 @@ import { Pagination } from './Pagination'
 
 export function Main(){
 
-let{ data, loading, selectCategory, setOption, option, setCurrentPage, currentPage, itemsPerPage } = useContext(Context)
+let{ data, loading, selectCategory, setCurrentPage, currentPage, itemsPerPage } = useContext(Context)
 
 let pagesCount = Math.ceil(data.length / itemsPerPage)
 
@@ -31,7 +31,7 @@ return (
   <section class="menu">
   {loading? <Preloader /> :
   <>
-  <Select select={selectCategory} setOption={setOption} option={option}/>
+  <Select select={selectCategory} />
 
     <h2 class="menu__title">Menu</h2>
 
