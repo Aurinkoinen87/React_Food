@@ -9,7 +9,7 @@ export function SelectBtns(){
 
   const category = useSelector((state)=> state.filtration.category)
 
-
+   
   let categories = ['with meat', 'vegetarian', 'cooked on grill', 'spicy', 'cheezy']
 
   const onClickHandler = (val) => {

@@ -2,16 +2,18 @@ import React, { useState, useEffect } from 'react';
 import './scss/style.scss';
 import * as axios from 'axios'
 import { useSelector, useDispatch } from 'react-redux'
-import { setCategory } from './redux/slices/filterSlice'
+import { setCategory, setFilters } from './redux/slices/filterSlice'
+import { setCurrentPage } from 'redux/slices/paginationSlice'
 
 import { Header } from './components/Header'
-import { Cart } from './components/Cart'
-import { Main } from './components/Main'
-import { EmptyCart } from './components/EmptyCart'
+import { Cart } from 'pages/Cart'
+import { Main } from 'pages/Main'
+import { EmptyCart } from 'pages/EmptyCart'
 
 import {
   Routes,
   Route,
+  useSearchParams
 } from "react-router-dom";
 
 
@@ -26,11 +28,11 @@ function App() {
   let [initData, setInitData] = useState([])
   let [data, setData] = useState([])
   let [loading, setLoading] = useState(true)
-  let [currentPage, setCurrentPage] = useState(1)
-  let [itemsPerPage] = useState(4)
+
 
   const dispatch = useDispatch()
-  const { option, inputValue } = useSelector((state)=> state.filtration)
+  const { category, option, inputValue } = useSelector((state)=> state.filtration)
+  let { currentPage } = useSelector((state)=> state.pagination)
 
 
 
@@ -58,6 +60,7 @@ function App() {
       setData(initData)
       return
     }
+    if(!data.length) console.log('EBAAAAS')
     data = initData.filter(o=> o.category == num)
     setData(data)
   }
@@ -93,13 +96,28 @@ if(inputValue){
   findPizza(inputValue)
 }
 
+const[searchParams, setSearchParams] = useSearchParams()
+console.log('here boy: ' + typeof searchParams)
+
+
+// useEffect(()=> {
+//   if(searchParams){
+
+//   }
+//   setSearchParams({category, option, currentPage})
+//   dispatch(setFilters({category, option}))
+//   dispatch(setCurrentPage(currentPage))
+//   selectCategory(category)
+// }, [category, option, currentPage])
+
+// let category = searchParams.get('category')
 
 
 
 
   return (
 <div class="wrapper">
-<Context.Provider value={{ data, loading, selectCategory, findPizza, initData, setData, currentPage, setCurrentPage, itemsPerPage }}>
+<Context.Provider value={{ data, loading, selectCategory, findPizza, initData, setData }}>
     <Header />
 
 

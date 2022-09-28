@@ -5,11 +5,13 @@ body {
   line-height: 27px;
   overflow-x: hidden;
   min-width: 320px;
+  min-height: 100vh;
   color: $grey-text-main;
+  padding: 0 40px;
 }
 
 .wrapper {
-  padding: 49px 67px 96px 48px;
+  padding: 48px;
   height: 100%;
   border-radius: 20px;
   max-width: 1400px;

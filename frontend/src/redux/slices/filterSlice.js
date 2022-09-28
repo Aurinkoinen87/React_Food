@@ -23,10 +23,15 @@ const filterSlice = createSlice({
     setInputValue(state, action){
       state.inputValue = action.payload
     },
+    setFilters(state, action){
+      state.category = action.payload.cat
+      state.option = action.payload.opt
+
+    },
   }
 })
 
  
-export const { setCategory, setOption, setInputValue } = filterSlice.actions
+export const { setCategory, setOption, setInputValue, setFilters } = filterSlice.actions
 
 export default filterSlice.reducer
