@@ -24,8 +24,8 @@ const filterSlice = createSlice({
       state.inputValue = action.payload
     },
     setFilters(state, action){
-      state.category = action.payload.cat
-      state.option = action.payload.opt
+      state.category = action.payload.category
+      state.option = action.payload.option
 
     },
   }

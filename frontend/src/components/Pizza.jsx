@@ -18,8 +18,11 @@ let [diameter, setDiameter] = useState(sizes[0])
 
 return (
     <div class="pizza">
+      <div className="pizza-img-desc">
     <img class="pizza-img" src={imageUrl} alt="menu__pizza"/>
     <h3 class="pizza__title">{title}</h3>
+    </div>
+    <div className="pizza-options">
     <div class="pizza__customize">
       <ul class="pizza__thickness-list">
         {types.map(t=> <li className={`pizza__thickness-item ${thick == t && "pizza__thickness-item--active"}`}
@@ -33,11 +36,16 @@ return (
     </div>
     <div class="pizza__purchase">
       <span class="pizza__price">{price}</span>
+
       <button class="pizza__add" onClick={addItem}>
+        <div>
         <SvgSelector name={'plus'} classSelect={'icon-plus-first'} />
+        </div>
         <span class="pizza__add-text">Add</span>
         {count? <span class="pizza__add-count">{count}</span> : ''}
       </button>
+
+    </div>
     </div>
   </div>
   )

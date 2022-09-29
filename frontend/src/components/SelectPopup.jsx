@@ -1,19 +1,22 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { setOption } from '../redux/slices/filterSlice'
+import { Context } from 'App'
 
 
 export function SelectPopup() {
 
   const dispatch = useDispatch()
   const { option } = useSelector((state)=> state.filtration)
+  const{ createParams } = React.useContext(Context)
 
   let [open, setOpen] = useState(false)
 
-  let options = ['most popular', 'price (desc)', 'price (asc)', 'alphabete']
+  const options = ['most popular', 'price (desc)', 'price (asc)', 'alphabete']
 
   const onClickHandler = (n) => {
     dispatch(setOption(n))
+    createParams('option', n)
     setOpen(false)
   }
   return (

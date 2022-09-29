@@ -30,12 +30,6 @@ function App() {
   let [loading, setLoading] = useState(true)
 
 
-  const dispatch = useDispatch()
-  const { category, option, inputValue } = useSelector((state)=> state.filtration)
-  let { currentPage } = useSelector((state)=> state.pagination)
-
-
-
   useEffect(()=> {
     axios.get('http://localhost:7000/')
     .then(data=> {
@@ -46,12 +40,17 @@ function App() {
       }, 2000)
 
     })
-    .catch(err=> console.log(err))
+    .catch(err=> {
+      console.log(err)
+      setLoading(false)
+    })
     // .finally(setLoading(false))??
     window.scrollTo(0, 0)
   }, [])
 
-
+  const dispatch = useDispatch()
+  const { category, option, inputValue } = useSelector((state)=> state.filtration)
+  let { currentPage } = useSelector((state)=> state.pagination)
 
   const selectCategory = (num = 'all') => {
     dispatch(setCategory(num))
@@ -65,8 +64,31 @@ function App() {
     setData(data)
   }
 
+  const params = {}
+  params.category = category
+  params.option = option
+  params.page = currentPage
+
+  const[searchParams, setSearchParams] = useSearchParams()
+  useEffect(()=> {
+    const check = searchParams.get(category) || ''
+    if(!check) setSearchParams({...searchParams})
+  },[])
+  const createParams = (key, value) => {
+    params[key] = value
+    setSearchParams({...searchParams, ...params})
+  }
+
+  console.log(searchParams)
 
 
+  const findPizza = (str) => {
+    data = data.filter(o=> o.title.toLowerCase().includes(str.toLowerCase()))
+  }
+  
+  if(inputValue){
+    findPizza(inputValue)
+  }
 
 if(option == 0){
     data = [...data].sort((a,b)=> b.rating - a.rating)
@@ -86,38 +108,9 @@ if(option == 3){
     }
 
 
-
-    
-const findPizza = (str) => {
-  data = data.filter(o=> o.title.toLowerCase().includes(str.toLowerCase()))
-}
-
-if(inputValue){
-  findPizza(inputValue)
-}
-
-const[searchParams, setSearchParams] = useSearchParams()
-console.log('here boy: ' + typeof searchParams)
-
-
-// useEffect(()=> {
-//   if(searchParams){
-
-//   }
-//   setSearchParams({category, option, currentPage})
-//   dispatch(setFilters({category, option}))
-//   dispatch(setCurrentPage(currentPage))
-//   selectCategory(category)
-// }, [category, option, currentPage])
-
-// let category = searchParams.get('category')
-
-
-
-
   return (
 <div class="wrapper">
-<Context.Provider value={{ data, loading, selectCategory, findPizza, initData, setData }}>
+<Context.Provider value={{ data, loading, selectCategory, findPizza, initData, setData, createParams }}>
     <Header />
 
 
