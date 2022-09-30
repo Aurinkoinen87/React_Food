@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { SvgSelector } from "./SvgSelector"
-
+import { addToOrder } from 'redux/slices/cartSlice'
 
 
 
@@ -8,13 +9,20 @@ import { SvgSelector } from "./SvgSelector"
 export function Pizza({ id, imageUrl, title, types, sizes, price, category, rating }) {
 
 let [count, setCount] = useState(0)
-
-const addItem = () => setCount(count + 1)
+const dispatch = useDispatch()
 
 let thickness = ['thin', 'common']
 
 let [thick, setThick] = useState(types[0])
 let [diameter, setDiameter] = useState(sizes[0])
+
+const addItem = () => {
+  setCount(count + 1)
+  const pizza = { id, title, thickness: thickness[thick], diameter, price }
+  dispatch(addToOrder(pizza))
+}
+const { order } = useSelector((state)=> state.cart)
+console.log(order)
 
 return (
     <div class="pizza">
