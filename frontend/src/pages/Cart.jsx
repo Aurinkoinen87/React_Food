@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { SvgSelector } from "components/SvgSelector"
+import SvgSelector from "components/SvgSelector"
 
 
 

@@ -1,6 +1,6 @@
 import { Context } from '../App'
 import React, { useState, useContext, useRef, useCallback } from 'react';
-import { SvgSelector } from "./SvgSelector"
+import SvgSelector from "./SvgSelector"
 import { useSelector, useDispatch } from 'react-redux'
 import { setInputValue } from '../redux/slices/filterSlice'
 import debounce from 'lodash.debounce'

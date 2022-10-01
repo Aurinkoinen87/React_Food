@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { SvgSelector } from "./SvgSelector"
 import { addToOrder } from 'redux/slices/cartSlice'
+import { PlusMinus } from './PlusMinus'
 
 
 
@@ -16,11 +16,24 @@ let thickness = ['thin', 'common']
 let [thick, setThick] = useState(types[0])
 let [diameter, setDiameter] = useState(sizes[0])
 
-const addItem = () => {
-  setCount(count + 1)
-  const pizza = { id, title, thickness: thickness[thick], diameter, price }
+const addToCart = () => {
+  if(!count){
+    setCount(++count)
+    return 
+  }
+  
+  const pizza = { title, thickness: thickness[thick], diameter, imageUrl, price, count }
   dispatch(addToOrder(pizza))
+  setCount(0)
 }
+const plusItem = () => setCount(++count)
+const minusItem = () => {
+  if(!count){
+    return 
+  }
+  setCount(--count)
+}
+
 const { order } = useSelector((state)=> state.cart)
 console.log(order)
 
@@ -42,15 +55,16 @@ return (
         onClick={()=> setDiameter(d)} key={id}>{d} cm</li>)}
       </ul>
     </div>
+    <div className="pizza__count">
+      <PlusMinus minusItem={minusItem} plusItem={plusItem} />
+      </div>
+    
     <div class="pizza__purchase">
       <span class="pizza__price">{price}</span>
 
-      <button class="pizza__add" onClick={addItem}>
-        <div>
-        <SvgSelector name={'plus'} classSelect={'icon-plus-first'} />
-        </div>
-        <span class="pizza__add-text">Add</span>
-        {count? <span class="pizza__add-count">{count}</span> : ''}
+        <button class="pizza__add" onClick={addToCart}>
+      <span className={`pizza__add-text`} style={{color: count? 'orange' : ''}}>{count? `Add to cart` : `Add`}</span>
+      {count? <span class="pizza__add-count">{count}</span> : ''}
       </button>
 
     </div>

@@ -134,51 +134,7 @@
     margin-bottom: 70px;
   }
 }
-.icon {
-	display: inline-block;
-	color: $grey-text-main;
-  width: 20px;
-	height: 20px;
-	fill: $grey-text-main;
-}
-.icon-local_pizza {
-  width: 45px;
-	height: 45px;
-  fill: $orange;
-}
 
-.cart-order {
-  fill: none;
-  stroke: $black;
-  stroke-width: 2px;
-  width: 24px;
-	height: 24px;
-}
-
-.icon-cancel-circle {
-  opacity: .5;
-  width: 25px;
-	height: 25px;
-  &:hover {
-    opacity: 1;
-  }
-}
-
-.icon-plus-first {
-  width: 15px;
-	height: 15px;
-}
-
-.icon-minus,
-.icon-plus {
-&:hover {
-  fill:rgba(138, 138, 138, 0.655)
-}
-}
-
-.icon-arrow-left2 {
-  margin-left: 30px;
-}
 
 .btn-return {
   display: flex;
@@ -233,8 +189,3 @@
 }
 
 
-.page-left-svg,
-.page-right-svg {
-  fill: $grey-text-main;
-  cursor: pointer;
-}

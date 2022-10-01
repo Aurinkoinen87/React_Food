@@ -4,7 +4,7 @@
 
 
 
-export function SvgSelector({ name, classSelect = '' }){
+ function SvgSelector({ name, classSelect = '' }){
   switch (name) {
 
     case 'search':
@@ -30,8 +30,16 @@ export function SvgSelector({ name, classSelect = '' }){
       </symbol>
     </svg>
 
+   case 'minus':
+        return <svg class="icon-minus">
+        <use xlinkHref="#icon-minus"></use>
+        <symbol id="icon-minus" viewBox="0 0 32 32">
+        <path d="M0 13v6c0 0.552 0.448 1 1 1h30c0.552 0 1-0.448 1-1v-6c0-0.552-0.448-1-1-1h-30c-0.552 00.448-1 1z"></path>
+        </symbol>
+        </svg>
+
     case 'plus':
-      return <svg className={`icon ${classSelect}`}>
+      return <svg className={`icon-plus`}>
       <symbol id="icon-plus" viewBox="0 0 32 32">
       <path d="M31 12h-11v-11c0-0.552-0.448-1-1-1h-6c-0.552 0-1 0.448-1 1v11h-11c-0.552 0-1 0.448-1 1v6c0 0.552 0.448 1 1 1h11v11c0 0.552 0.448 1 1 1h6c0.552 0 1-0.448 1-1v-11h11c0.552 0 1-0.448 1-1v-6c0-0.552-0.448-1-1-1z"></path>
       </symbol>
@@ -46,14 +54,6 @@ export function SvgSelector({ name, classSelect = '' }){
       <path d="M26.5 4h-6.5v-2.5c0-0.825-0.675-1.5-1.5-1.5h-7c-0.825 0-1.5 0.675-1.5 1.5v2.5h-6.5c-0.825 0-1.5 0.675-1.5 1.5v2.5h26v-2.5c0-0.     825-0.675-1.5-1.5-1.5zM18 4h-6v-1.975h6v1.975z"></path>
       </symbol>
       </svg>
-
-      case 'minus':
-        return <svg class="icon icon-minus">
-        <use xlinkHref="#icon-minus"></use>
-        <symbol id="icon-minus" viewBox="0 0 32 32">
-        <path d="M0 13v6c0 0.552 0.448 1 1 1h30c0.552 0 1-0.448 1-1v-6c0-0.552-0.448-1-1-1h-30c-0.552 0-1 0.448-1 1z"></path>
-        </symbol>
-        </svg>
 
       case 'cancel-circle': 
         return <svg class="icon icon-cancel-circle">
@@ -87,5 +87,5 @@ export function SvgSelector({ name, classSelect = '' }){
   }
 }
 
-
+export default SvgSelector
 

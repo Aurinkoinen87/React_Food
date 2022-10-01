@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { SvgSelector } from "./SvgSelector"
+import SvgSelector from "./SvgSelector"
 import { SearchInput } from './SearchInput'
 
 export function Header() {

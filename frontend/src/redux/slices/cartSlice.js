@@ -1,11 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { v4 as uuid } from 'uuid';
 
 
 
 
 const initialState = {
   order: [],
-  sum: 0
+  sum: 0,
+  all: 0
 }
 
 
@@ -14,14 +16,12 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addToOrder(state, action){
-      // const pizza = {
-      //   id: action.payload.id,
-      //   thickness: action.payload.thickness,
-      //   size: action.payload.size,
-      //   title: action.payload.title,
-      //   price: action.payload.price
-      // }
-      state.order.push(action.payload)
+      const repeat = state.order.find(p=> action.payload.title === p.title && action.payload.thickness === p.thickness && action.payload.diameter === p.diameter && action.payload.price === p.price)
+      if(repeat){
+        state.order = state.order.map(p=> p.id === repeat.id? {...p, count: p.count + action.payload.count} : p) 
+        return
+    }
+      state.order.push({...action.payload, id: uuid()})
     },
   }
 })
@@ -30,3 +30,4 @@ const cartSlice = createSlice({
 export const { addToOrder } = cartSlice.actions
 
 export default cartSlice.reducer
+

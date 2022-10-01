@@ -56,26 +56,24 @@
     padding-left: 20px;
   }
   &__add {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    font-weight: 700;
+    text-align: center;
+    color: $orange;
     background: transparent;
-    padding: 6px;
     border: 1px solid $orange;
     border-radius: 30px;
     cursor: pointer;
-    min-width: 130px;
-    padding: 9px 4px 7px;
+    padding: 9px 20px;
     text-align: center;
+    transition: all .3s ease-in-out;
+    &:hover {
+      background: $orange;
+      color: #fff;
+    }
   }
-  &__add-text {
-    display: block;
-    font-weight: 700;
-    line-height: 20px;
-    color: $orange;
-    margin-right: 5px;
-  }
+
   &__add-count {
-    display: block;
+    display: inline-block;
     background-color: $orange;
     width: 25px;
     height: 25px;
@@ -83,5 +81,24 @@
     color: #fff;
     text-align: center;
     margin-left: 10px;
+  }
+  &__count {
+    display: flex;
+    justify-content: flex-end;
+    margin: 15px;
+  }
+}
+
+.btn-count {
+  background: transparent;
+  border: 1px solid $orange;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  height: 27px;
+  margin-right: 10px;
+  transition: all .3s ease-in-out;
+  &:hover {
+    background: $orange;
   }
 }

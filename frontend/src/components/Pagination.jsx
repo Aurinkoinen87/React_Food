@@ -1,5 +1,5 @@
 import React from 'react'
-import { SvgSelector } from './SvgSelector'
+import SvgSelector from './SvgSelector'
 import { setCurrentPage } from 'redux/slices/paginationSlice'
 import { Context } from 'App'
 import { useDispatch } from 'react-redux'
