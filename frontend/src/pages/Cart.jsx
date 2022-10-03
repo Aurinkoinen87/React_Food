@@ -1,10 +1,15 @@
 import { Link } from "react-router-dom"
 import SvgSelector from "components/SvgSelector"
-
+import { useSelector, useDispatch } from 'react-redux'
+import CartPizza from "components/CartPizza"
 
 
 
 export function Cart() {
+
+  const { order, totalSum, totalQuantity } = useSelector((state)=> state.cart)
+  const dispatch = useDispatch()
+
 return (
 <section class="order">
 
@@ -23,111 +28,19 @@ return (
 
         </div>
 
-        <div class="cart-pizza">
-
-          <div class="cart-pizza__line"></div>
-
-          <div class="cart-pizza__item">
-
-            <div class="cart-pizza__name">
-              {/* <img class="cart-pizza__img" src="./img/ab2e00d7a5f4.png" alt="pizza"> */}
-              <div class="cart-pizza__description">
-                <h4 class="cart-pizza__title">Cheezy chicken</h4>
-                <p class="cart-pizza__text">thin,26 cm.</p>
-              </div>
-            </div>
-
-            <div class="cart-pizza__val">
-            <SvgSelector name={'minus'} />
-
-              <span class="cart-pizza__num">2</span>
-              <SvgSelector name={'plus'} classSelect={'icon-plus'} />
-
-
-            </div>
-
-            <div class="cart-pizza__price">10$</div>
-            <SvgSelector name={'cancel-circle'} />
-
-          </div>
-
-        </div>
-        <div class="cart-pizza">
-
-          <div class="cart-pizza__line"></div>
-
-          <div class="cart-pizza__item">
-
-            <div class="cart-pizza__name">
-              {/* <img class="cart-pizza__img" src="./img/ab2e00d7a5f4.png" alt="pizza"> */}
-              <div class="cart-pizza__description">
-                <h4 class="cart-pizza__title">Cheezy chicken</h4>
-                <p class="cart-pizza__text">thin,26 cm.</p>
-              </div>
-            </div>
-
-            <div class="cart-pizza__val">
-              <svg class="icon icon-minus">
-                <use xlinkHref="icons.svg#icon-minus"></use>
-              </svg>
-              <span class="cart-pizza__num">2</span>
-              <svg class="icon icon-plus">
-                <use xlinkHref="icons.svg#icon-plus"></use>
-              </svg>
-            </div>
-
-            <div class="cart-pizza__price">10$</div>
-
-            <svg class="icon icon-cancel-circle">
-              <use xlinkHref="icons.svg#icon-cancel-circle"></use>
-            </svg>
-          </div>
-
-        </div>
-
-        <div class="cart-pizza">
-
-          <div class="cart-pizza__line"></div>
-
-          <div class="cart-pizza__item">
-
-            <div class="cart-pizza__name">
-              {/* <img class="cart-pizza__img" src="./img/ab2e00d7a5f4.png" alt="pizza"> */}
-              <div class="cart-pizza__description">
-                <h4 class="cart-pizza__title">Cheezy chicken</h4>
-                <p class="cart-pizza__text">thin,26 cm.</p>
-              </div>
-            </div>
-
-            <div class="cart-pizza__val">
-              <svg class="icon icon-minus">
-                <use xlinkHref="icons.svg#icon-minus"></use>
-              </svg>
-              <span class="cart-pizza__num">2</span>
-              <svg class="icon icon-plus">
-                <use xlinkHref="icons.svg#icon-plus"></use>
-              </svg>
-            </div>
-
-            <div class="cart-pizza__price">10$</div>
-
-            <svg class="icon icon-cancel-circle">
-              <use xlinkHref="icons.svg#icon-cancel-circle"></use>
-            </svg>
-          </div>
-
-        </div>
+        {order.map(p=> <CartPizza key={p.id} {...p} />)}
+       
 
         <div class="total">
 
           <div class="total__num">
             <span class="total__num-text">Total amount:</span>
-            <span class="total__quantity">3</span>
+            <span class="total__quantity">{totalQuantity}</span>
           </div>
 
           <div class="total__sum">
             <span class="total__sum-text">Total sum:</span>
-            <span class="total__sum-cost">30$</span>
+            <span class="total__sum-cost">{totalSum + ' RUR'}</span>
           </div>
 
         </div>

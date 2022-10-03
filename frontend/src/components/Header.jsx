@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom"
 import SvgSelector from "./SvgSelector"
 import { SearchInput } from './SearchInput'
+import GoToCart from './GoToCart'
+
 
 export function Header() {
 
@@ -22,19 +24,8 @@ export function Header() {
 
     <SearchInput />
 
+    <GoToCart />
 
-    <Link class="cart" to={'cart'}>
-      <div class="cart__inner">
-        <span class="cart__price">520</span>
-
-        <div class="cart__cart-box">
-        <SvgSelector name={'cart'} classSelect={'icon-cart'} />
-
-          <span class="cart__quantity">3</span>
-        </div>
-
-      </div>
-    </Link>
 
 
   </div>

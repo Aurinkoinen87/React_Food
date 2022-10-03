@@ -1,0 +1,39 @@
+.cart {
+  padding: 11px;
+  background-color: $orange;
+  border-radius: 30px;
+  display: flex;  
+  align-items: center;
+
+  &__inner {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 10px;
+  }
+  &__price {
+    position: relative;
+  }
+  &__price,
+  &__quantity {
+    display: inline-block;
+    text-align: center;
+    font-weight: 700;
+    font-size: 17px;
+    color: $white;
+  }
+
+  &__price {
+    &::after {
+      position: absolute;
+      content: '';
+      right: -10px;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background-color: rgba($white, .3)
+    }
+  }
+  &__cart-box {
+    margin-left: 18px;
+  }
+}
