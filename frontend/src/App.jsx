@@ -8,7 +8,7 @@ import { setCurrentPage } from 'redux/slices/paginationSlice'
 import { Header } from './components/Header'
 import { Cart } from 'pages/Cart'
 import { Main } from 'pages/Main'
-import { EmptyCart } from 'pages/EmptyCart'
+import EmptyCart from 'pages/EmptyCart'
 
 import {
   Routes,

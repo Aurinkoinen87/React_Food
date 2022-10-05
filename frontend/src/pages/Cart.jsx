@@ -1,14 +1,15 @@
-import { Link } from "react-router-dom"
+import { Link, Navigate } from "react-router-dom"
 import SvgSelector from "components/SvgSelector"
 import { useSelector, useDispatch } from 'react-redux'
+import { deleteAllFromCart } from 'redux/slices/cartSlice.js'
 import CartPizza from "components/CartPizza"
-
-
 
 export function Cart() {
 
   const { order, totalSum, totalQuantity } = useSelector((state)=> state.cart)
   const dispatch = useDispatch()
+
+  if(!totalQuantity) return <Navigate to='/empty_cart'/>
 
 return (
 <section class="order">
@@ -20,7 +21,7 @@ return (
             <h3 class="cart-top__title">Cart</h3>
           </div>
 
-          <div class="cart-top__bin">
+          <div class="cart-top__bin" onClick={()=> dispatch(deleteAllFromCart())}>
           <SvgSelector name={'bin'} />
 
             <div class="cart-top__bin-text">Clean cart</div>
