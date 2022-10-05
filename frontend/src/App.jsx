@@ -12,8 +12,7 @@ import EmptyCart from 'pages/EmptyCart'
 
 import {
   Routes,
-  Route,
-  useSearchParams
+  Route
 } from "react-router-dom";
 
 
@@ -64,22 +63,6 @@ function App() {
     setData(data)
   }
 
-  const params = {}
-  params.category = category
-  params.option = option
-  params.page = currentPage
-
-  const[searchParams, setSearchParams] = useSearchParams()
-  useEffect(()=> {
-    const check = searchParams.get(category) || ''
-    if(!check) setSearchParams({...searchParams})
-  },[])
-  const createParams = (key, value) => {
-    params[key] = value
-    setSearchParams({...searchParams, ...params})
-  }
-
-  console.log(searchParams)
 
 
   const findPizza = (str) => {
@@ -110,7 +93,7 @@ if(option == 3){
 
   return (
 <div class="wrapper">
-<Context.Provider value={{ data, loading, selectCategory, findPizza, initData, setData, createParams }}>
+<Context.Provider value={{ data, loading, selectCategory, findPizza, initData, setData }}>
     <Header />
 
 

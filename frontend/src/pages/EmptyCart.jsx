@@ -5,6 +5,8 @@ import SvgSelector from "components/SvgSelector"
 
 
 export default function EmptyCart() {
+
+  
 return (
      <div class="empty">
      <h4 class="empty__title">Your cart is empty</h4>

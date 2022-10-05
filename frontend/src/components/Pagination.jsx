@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux'
 
 export function Pagination({ currentPage, itemsPerPage }) {
 
-  let{ data, createParams } = React.useContext(Context)
+  let{ data } = React.useContext(Context)
 
   const dispatch = useDispatch()
 
@@ -23,7 +23,6 @@ export function Pagination({ currentPage, itemsPerPage }) {
   
   const nextPage = (pageNum) => {
     dispatch(setCurrentPage(pageNum))
-    createParams('page', pageNum)
   }
 
 

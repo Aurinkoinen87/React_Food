@@ -9,7 +9,6 @@ export function SelectPopup() {
 
   const dispatch = useDispatch()
   const { option } = useSelector((state)=> state.filtration)
-  const{ createParams } = React.useContext(Context)
 
   let [open, setOpen] = useState(false)
 
@@ -17,7 +16,6 @@ export function SelectPopup() {
 
   const onClickHandler = (n) => {
     dispatch(setOption(n))
-    createParams('option', n)
     setOpen(false)
   }
 

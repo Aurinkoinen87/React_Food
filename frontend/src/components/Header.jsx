@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import SvgSelector from "./SvgSelector"
 import { SearchInput } from './SearchInput'
 import GoToCart from './GoToCart'
@@ -6,7 +6,7 @@ import GoToCart from './GoToCart'
 
 export function Header() {
 
-
+  const location = useLocation()
 
   return (
     <header class="header">
@@ -24,9 +24,7 @@ export function Header() {
 
     <SearchInput />
 
-    <GoToCart />
-
-
+    {location.pathname !== '/empty_cart' && <GoToCart />}
 
   </div>
 
