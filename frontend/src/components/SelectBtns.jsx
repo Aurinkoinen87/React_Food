@@ -1,11 +1,9 @@
-import React, { useContext } from 'react'
-import { Context } from '../App'
+import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { setCurrentPage } from 'redux/slices/paginationSlice.js'
+import { setCurrentPage } from '../redux/slices/paginationSlice.js'
 
 export function SelectBtns(){
 
-  const{ selectCategory } = useContext(Context)
   const dispatch = useDispatch()
   const category = useSelector((state)=> state.filtration.category)
 
@@ -13,8 +11,6 @@ export function SelectBtns(){
   const categories = ['with meat', 'vegetarian', 'cooked on grill', 'spicy', 'cheezy']
 
   const onClickHandler = (val) => {
-    selectCategory(val)
-    dispatch(setCurrentPage(1))
   }
 
 

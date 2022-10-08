@@ -1,6 +1,6 @@
 import React from 'react'
 import SvgSelector from "./SvgSelector"
-import { deleteFromCart, minusItem, plusItem } from 'redux/slices/cartSlice.js'
+import { deleteFromCart, minusItem, plusItem } from '../redux/slices/cartSlice.js'
 import { useDispatch } from 'react-redux'
 
 

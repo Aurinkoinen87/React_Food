@@ -1,15 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import './scss/style.scss';
-import * as axios from 'axios'
 import { useSelector, useDispatch } from 'react-redux'
-import { setCategory, setFilters } from './redux/slices/filterSlice'
-import { setCurrentPage } from 'redux/slices/paginationSlice'
-
+import { fetchData } from './redux/slices/dataSlice'
 import { Header } from './components/Header'
-import { Cart } from 'pages/Cart'
-import { Main } from 'pages/Main'
-import EmptyCart from 'pages/EmptyCart'
-
+import { Cart } from './pages/Cart'
+import { Main } from './pages/Main'
+import EmptyCart from './pages/EmptyCart'
+import { dataSelector } from './redux/slices/dataSlice'
 import {
   Routes,
   Route
@@ -17,61 +14,23 @@ import {
 
 
 
-
-
-export const Context = React.createContext('')
-
-
 function App() {
 
-  let [initData, setInitData] = useState([])
-  let [data, setData] = useState([])
-  let [loading, setLoading] = useState(true)
-
-
-  useEffect(()=> {
-    axios.get('http://localhost:7000/')
-    .then(data=> {
-      setTimeout(()=> {
-        setInitData(data.data)
-        setData(data.data)
-        setLoading(false)
-      }, 2000)
-
-    })
-    .catch(err=> {
-      console.log(err)
-      setLoading(false)
-    })
-    // .finally(setLoading(false))??
-    window.scrollTo(0, 0)
-  }, [])
 
   const dispatch = useDispatch()
-  const { category, option, inputValue } = useSelector((state)=> state.filtration)
-  let { currentPage } = useSelector((state)=> state.pagination)
 
-  const selectCategory = (num = 'all') => {
-    dispatch(setCategory(num))
-    setCurrentPage(1)
-    if(num == 'all') {
-      setData(initData)
-      return
-    }
-    if(!data.length) console.log('EBAAAAS')
-    data = initData.filter(o=> o.category == num)
-    setData(data)
-  }
+  useEffect(()=> {
+    setTimeout(()=> {
+      dispatch(fetchData())
+      window.scrollTo(0, 0)
+    }, 1500)
+  }, [])
+
+  let { data } = useSelector(dataSelector)
+
+  const { option } = useSelector((state)=> state.filtration)
 
 
-
-  const findPizza = (str) => {
-    data = data.filter(o=> o.title.toLowerCase().includes(str.toLowerCase()))
-  }
-  
-  if(inputValue){
-    findPizza(inputValue)
-  }
 
 if(option == 0){
     data = [...data].sort((a,b)=> b.rating - a.rating)
@@ -93,21 +52,17 @@ if(option == 3){
 
   return (
 <div class="wrapper">
-<Context.Provider value={{ data, loading, selectCategory, findPizza, initData, setData }}>
     <Header />
-
-
 <main class="main">
 
     <Routes>
-      <Route path="/" element={<Main />}/>
+      <Route path="/" element={<Main data={data} />}/>
       <Route path="/cart" element={<Cart />}/>
       <Route path="/empty_cart" element={<EmptyCart />}/>
       <Route path="*" element={<div class="not-found">Nothing was found</div>}/>
     </Routes>
 </main>
 
-</Context.Provider>
 </div>
   );
 }

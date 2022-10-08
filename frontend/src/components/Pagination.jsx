@@ -1,16 +1,15 @@
 import React from 'react'
 import SvgSelector from './SvgSelector'
-import { setCurrentPage } from 'redux/slices/paginationSlice'
-import { Context } from 'App'
-import { useDispatch } from 'react-redux'
+import { setCurrentPage } from '../redux/slices/paginationSlice'
+import { useSelector, useDispatch } from 'react-redux'
+import { dataSelector } from '../redux/slices/dataSlice'
 
 
 export function Pagination({ currentPage, itemsPerPage }) {
 
-  let{ data } = React.useContext(Context)
 
   const dispatch = useDispatch()
-
+  const data = useSelector(dataSelector)
 
 
   let pagesCount = Math.ceil(data.length / itemsPerPage)
@@ -35,7 +34,7 @@ export function Pagination({ currentPage, itemsPerPage }) {
         </span>
        }
       {
-      pages.map((p,i)=> <span className={`pagination__item ${currentPage == p && `pagination__highlighted`}`} key={i} onClick={()=> nextPage(p)}>{p}</span>)
+      pages.map((p,i)=> <span className={`pagination__item ${currentPage === p && `pagination__highlighted`}`} key={i} onClick={()=> nextPage(p)}>{p}</span>)
       }
       {pages.length > 1 && currentPage !== pages.length
        && <span class="pagination__arrow" onClick={()=> nextPage(currentPage + 1)}><SvgSelector name={"page-right"}/></span>}

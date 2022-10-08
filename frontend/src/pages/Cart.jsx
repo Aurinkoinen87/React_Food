@@ -1,8 +1,8 @@
 import { Link, Navigate } from "react-router-dom"
-import SvgSelector from "components/SvgSelector"
+import SvgSelector from "../components/SvgSelector"
 import { useSelector, useDispatch } from 'react-redux'
-import { deleteAllFromCart } from 'redux/slices/cartSlice.js'
-import CartPizza from "components/CartPizza"
+import { deleteAllFromCart } from '../redux/slices/cartSlice.js'
+import CartPizza from "../components/CartPizza"
 
 export function Cart() {
 

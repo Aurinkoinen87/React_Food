@@ -1,7 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { setOption } from '../redux/slices/filterSlice'
-import { Context } from 'App'
 import { useEffect } from 'react';
 
 

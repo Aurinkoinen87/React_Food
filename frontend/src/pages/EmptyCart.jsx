@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
-import cartImg from 'assets/img/cart.png'
-import SvgSelector from "components/SvgSelector"
+import cartImg from '../assets/img/cart.png'
+import SvgSelector from "../components/SvgSelector"
 
 
 

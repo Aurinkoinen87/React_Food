@@ -1,10 +1,9 @@
-import { Pizza } from 'components/Pizza'
-import { Select } from 'components/Select'
-import { Preloader } from 'components/Preloader'
-import { useContext } from 'react'
-import { Context } from 'App'
-import { Pagination } from 'components/Pagination'
+import { Pizza } from '../components/Pizza'
+import { Select } from '../components/Select'
+import { Preloader } from '../components/Preloader'
+import { Pagination } from '../components/Pagination'
 import { useSelector } from 'react-redux'
+import { dataSelector } from '../redux/slices/dataSlice'
 
 
 
@@ -12,10 +11,9 @@ import { useSelector } from 'react-redux'
 
 
 
-export function Main(){
+export function Main({ data }){
 
-let{ data, loading, selectCategory } = useContext(Context)
-
+const { loading } = useSelector(dataSelector)
 let { currentPage, itemsPerPage } = useSelector((state)=> state.pagination)
 let pageLastItemIndex = itemsPerPage*currentPage
 let pageFirstItemIndex = pageLastItemIndex - itemsPerPage
@@ -23,9 +21,9 @@ data = data?.slice(pageFirstItemIndex, pageLastItemIndex) || []
 
 return (
   <section class="menu">
-  {loading? <Preloader /> :
+  {loading !== 'succeeded'? <Preloader /> :
   <>
-  <Select select={selectCategory} />
+  {/* <Select /> */}
 
     <h2 class="menu__title">Menu</h2>
 
@@ -35,7 +33,7 @@ return (
     </div>
   </>
     }
-    <Pagination currentPage={currentPage} itemsPerPage={itemsPerPage} />
+    {/* <Pagination currentPage={currentPage} itemsPerPage={itemsPerPage} /> */}
   </section>
   )
 }

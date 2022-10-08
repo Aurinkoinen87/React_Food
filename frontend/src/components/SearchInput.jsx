@@ -1,23 +1,21 @@
-import { Context } from '../App'
-import React, { useState, useContext, useRef, useCallback } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import SvgSelector from "./SvgSelector"
 import { useSelector, useDispatch } from 'react-redux'
-import { setInputValue } from '../redux/slices/filterSlice'
 import debounce from 'lodash.debounce'
+import { setInput } from '../redux/slices/dataSlice.js'
+
 
 
 
 export function SearchInput() {
 
-  let{ initData, selectCategory, setData } = useContext(Context)
   const dispatch = useDispatch()
-  const { category } = useSelector((state)=> state.filtration)
 
   let[value, setValue] = useState('')
 
   const debouncer = useCallback(
     debounce((str)=> {
-      dispatch(setInputValue(str))
+      dispatch(setInput(str))
     }, 1000),[]) 
 
   const onChangeHandler = (e) => {
@@ -29,9 +27,7 @@ export function SearchInput() {
 
   const clearInput = () => {
     setValue('')
-    dispatch(setInputValue(''))
-    setData(initData)
-    selectCategory(category)
+    dispatch(setInput(''))
     inputRef.current.focus()
   }
 
