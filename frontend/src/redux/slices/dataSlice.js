@@ -6,13 +6,13 @@ export const fetchData = createAsyncThunk(
   'main_data/fetchData',
   async () => {
     const response = await axios.get('http://localhost:7000/')
-    console.log('1')    
     return response.data
   }
 )
 
 const initialState = {
   data: [],
+  curData: [],
   loading: 'idle' // 'idle' | 'pending' | 'succeeded'
 }
 
@@ -23,13 +23,20 @@ const dataSlice = createSlice({
   reducers: {
     setInput(state, action){      
     
-    }
+    },
+    setCategory(state, action){
+      if(action.payload === 0){
+        state.curData = state.data
+        return
+      }
+      state.curData = state.data.filter(el=> el.category === action.payload)
+    },
     },
   extraReducers: (builder) => {
     builder.addCase(fetchData.fulfilled, (state, action) => {
-      state.data = action.payload
+      state.data = action.payload     
+      state.curData = action.payload
       state.loading = 'succeeded'
-      console.log('2')
     })
     builder.addCase(fetchData.pending, (state) => {
       state.loading = 'pending'
@@ -44,6 +51,6 @@ export const dataSelector = (state) => state.mainData
 
 
 
-export const { setInput } = dataSlice.actions
+export const { setInput, setCategory } = dataSlice.actions
 
 export default dataSlice.reducer

@@ -10,7 +10,7 @@ export function Select() {
     <div class="selection">
 
     <SelectBtns />
-    <SelectPopup />
+    {/* <SelectPopup /> */}
     </div>
   )
 } 

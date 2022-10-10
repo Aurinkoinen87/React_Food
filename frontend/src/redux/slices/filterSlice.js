@@ -2,9 +2,8 @@ import { createSlice } from '@reduxjs/toolkit'
 
 
 
-
 const initialState = {
-  category: 'all',
+  categories: ['all', 'with meat', 'vegetarian', 'cooked on grill', 'spicy', 'cheezy'],
   option: 0,
 }
 
@@ -13,18 +12,10 @@ const filterSlice = createSlice({
   name: 'category',
   initialState,
   reducers: {
-    setCategory(state, action){
-      state.category = action.payload
-    },
     setOption(state, action){
       state.option = action.payload
-    },
-    setFilters(state, action){
-      state.category = action.payload.category
-      state.option = action.payload.option
-
-    },
-  }
+    }
+  },
 })
 
  

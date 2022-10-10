@@ -23,7 +23,7 @@ return (
   <section class="menu">
   {loading !== 'succeeded'? <Preloader /> :
   <>
-  {/* <Select /> */}
+  <Select />
 
     <h2 class="menu__title">Menu</h2>
 

@@ -1,26 +1,26 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { setCurrentPage } from '../redux/slices/paginationSlice.js'
+import { setCategory } from '../redux/slices/dataSlice'
+
 
 export function SelectBtns(){
 
   const dispatch = useDispatch()
-  const category = useSelector((state)=> state.filtration.category)
+  const categoriesStr = useSelector((state)=> state.filtration.categories)
 
-   
-  const categories = ['with meat', 'vegetarian', 'cooked on grill', 'spicy', 'cheezy']
+  let [num, setNum] = useState(0)
 
   const onClickHandler = (val) => {
+    dispatch(setCategory(val))
+    setNum(val)
   }
 
-
-  
   return (
     <div class="btn-block">
     <ul class="btn-block__list">
-      <li className={`btn-block__item ${category == 'all' && "btn-block__item--active"}`}
-       onClick={()=> onClickHandler('all')}>All</li>
-      {categories.map((n,i)=> <li className={`btn-block__item ${category == i && "btn-block__item--active"}`} onClick={()=> onClickHandler(i)}>{n}</li>)}
+      {
+      categoriesStr.map((n,i)=> <li className={`btn-block__item ${num == i && "btn-block__item--active"}`} onClick={()=> onClickHandler(i)}>{n}</li>)
+      }
     </ul>
   </div>
   )
