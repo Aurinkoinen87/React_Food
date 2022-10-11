@@ -2,7 +2,7 @@ import React, { useState, useRef, useCallback } from 'react';
 import SvgSelector from "./SvgSelector"
 import { useSelector, useDispatch } from 'react-redux'
 import debounce from 'lodash.debounce'
-import { setInput } from '../redux/slices/dataSlice.js'
+import { setInput, setCategory, dataSelector } from '../redux/slices/dataSlice.js'
 
 
 
@@ -10,10 +10,10 @@ import { setInput } from '../redux/slices/dataSlice.js'
 export function SearchInput() {
 
   const dispatch = useDispatch()
-
+  let { category } = useSelector(dataSelector)
   let[value, setValue] = useState('')
 
-  const debouncer = useCallback(
+  const debouncer = useCallback(   
     debounce((str)=> {
       dispatch(setInput(str))
     }, 1000),[]) 
@@ -21,6 +21,7 @@ export function SearchInput() {
   const onChangeHandler = (e) => {
     let input = e.currentTarget.value
     setValue(input)
+    if(category !== 0) dispatch(setCategory(0))     
     debouncer(input)
   }
 

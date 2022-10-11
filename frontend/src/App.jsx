@@ -1,16 +1,12 @@
 import React, { useEffect } from 'react';
 import './scss/style.scss';
 import { useSelector, useDispatch } from 'react-redux'
-import { fetchData } from './redux/slices/dataSlice'
+import { fetchData, dataSelector } from './redux/slices/dataSlice'
 import { Header } from './components/Header'
 import { Cart } from './pages/Cart'
 import { Main } from './pages/Main'
 import EmptyCart from './pages/EmptyCart'
-import { dataSelector } from './redux/slices/dataSlice'
-import {
-  Routes,
-  Route
-} from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 
 
@@ -28,7 +24,7 @@ function App() {
 
   let { curData } = useSelector(dataSelector)
 
-  const { option } = useSelector((state)=> state.filtration)
+  const { option } = useSelector((state)=> state.popUp)
 
 
 

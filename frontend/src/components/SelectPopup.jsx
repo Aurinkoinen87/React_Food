@@ -1,13 +1,12 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { setOption } from '../redux/slices/filterSlice'
-import { useEffect } from 'react';
+import { setOption } from '../redux/slices/popUpSlice'
 
 
 export function SelectPopup() {
 
   const dispatch = useDispatch()
-  const { option } = useSelector((state)=> state.filtration)
+  const { option } = useSelector((state)=> state.popUp)
 
   let [open, setOpen] = useState(false)
 

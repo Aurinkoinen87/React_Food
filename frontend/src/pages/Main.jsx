@@ -17,7 +17,7 @@ const { loading } = useSelector(dataSelector)
 let { currentPage, itemsPerPage } = useSelector((state)=> state.pagination)
 let pageLastItemIndex = itemsPerPage*currentPage
 let pageFirstItemIndex = pageLastItemIndex - itemsPerPage
-data = data?.slice(pageFirstItemIndex, pageLastItemIndex) || []
+data = data.slice(pageFirstItemIndex, pageLastItemIndex)
 
 return (
   <section class="menu">
@@ -33,7 +33,7 @@ return (
     </div>
   </>
     }
-    {/* <Pagination currentPage={currentPage} itemsPerPage={itemsPerPage} /> */}
+    <Pagination />
   </section>
   )
 }

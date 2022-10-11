@@ -5,14 +5,15 @@ import { useSelector, useDispatch } from 'react-redux'
 import { dataSelector } from '../redux/slices/dataSlice'
 
 
-export function Pagination({ currentPage, itemsPerPage }) {
+export function Pagination() {
 
 
   const dispatch = useDispatch()
-  const data = useSelector(dataSelector)
+  const { curData } = useSelector(dataSelector)
+  const { currentPage, itemsPerPage } = useSelector((state)=> state.pagination)
 
 
-  let pagesCount = Math.ceil(data.length / itemsPerPage)
+  let pagesCount = Math.ceil(curData.length / itemsPerPage)
 
   let pages = []
   
@@ -23,21 +24,22 @@ export function Pagination({ currentPage, itemsPerPage }) {
   const nextPage = (pageNum) => {
     dispatch(setCurrentPage(pageNum))
   }
-
+  
+  let cond1 = pages.length > 1 && currentPage !== 1
+  let cond2 = pages.length > 1 && currentPage !== pages.length
 
   return (
     <div class="pagination">
-      {
-      pages.length > 1 && currentPage !== 1
-       && <span class="pagination__arrow" onClick={()=> nextPage(currentPage - 1)}>
+      
+       <span className={"pagination__arrow"} style={{visibility: cond1? 'visible' : 'hidden' }} onClick={()=> nextPage(currentPage - 1)}>
         <SvgSelector name={"page-left"}/>
         </span>
-       }
+       
       {
       pages.map((p,i)=> <span className={`pagination__item ${currentPage === p && `pagination__highlighted`}`} key={i} onClick={()=> nextPage(p)}>{p}</span>)
       }
-      {pages.length > 1 && currentPage !== pages.length
-       && <span class="pagination__arrow" onClick={()=> nextPage(currentPage + 1)}><SvgSelector name={"page-right"}/></span>}
+      
+       <span class="pagination__arrow" style={{visibility: cond2? 'visible' : 'hidden' }} onClick={()=> nextPage(currentPage + 1)}><SvgSelector name={"page-right"}/></span>
     </div>
   )
 }

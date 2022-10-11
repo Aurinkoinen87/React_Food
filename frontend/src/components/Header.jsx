@@ -22,7 +22,7 @@ export function Header() {
     </div>
     </Link>
 
-    {/* <SearchInput /> */}
+    <SearchInput />
 
     {location.pathname !== '/empty_cart' && <GoToCart />}
 

@@ -13,7 +13,8 @@ export const fetchData = createAsyncThunk(
 const initialState = {
   data: [],
   curData: [],
-  loading: 'idle' // 'idle' | 'pending' | 'succeeded'
+  loading: 'idle', // 'idle' | 'pending' | 'succeeded'
+  category: 0
 }
 
 
@@ -21,15 +22,17 @@ const dataSlice = createSlice({
   name: 'main_data',
   initialState,
   reducers: {
-    setInput(state, action){      
-    
+    setInput(state, action){ 
+      state.curData = state.data.filter(el=> el.title.toLowerCase().includes(action.payload.toLowerCase()))
     },
     setCategory(state, action){
       if(action.payload === 0){
         state.curData = state.data
+        state.category = action.payload
         return
       }
       state.curData = state.data.filter(el=> el.category === action.payload)
+      state.category = action.payload
     },
     },
   extraReducers: (builder) => {
