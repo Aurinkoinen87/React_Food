@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { addToOrder } from '../redux/slices/cartSlice'
 import { PlusMinus } from './PlusMinus'
+import { Link } from "react-router-dom"
 
 
 
@@ -40,7 +41,7 @@ console.log(order)
 return (
     <div class="pizza">
       <div className="pizza-img-desc">
-    <img class="pizza-img" src={imageUrl} alt="menu__pizza"/>
+    <Link to={`item/${id}`} ><img class="pizza-img" src={imageUrl} alt="menu__pizza"/></Link>
     <h3 class="pizza__title">{title}</h3>
     </div>
     <div className="pizza-options">

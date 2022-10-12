@@ -34,6 +34,9 @@ const dataSlice = createSlice({
       state.curData = state.data.filter(el=> el.category === action.payload)
       state.category = action.payload
     },
+    setLoading(state, action){
+      state.loading = action.payload
+    }
     },
   extraReducers: (builder) => {
     builder.addCase(fetchData.fulfilled, (state, action) => {
@@ -54,6 +57,6 @@ export const dataSelector = (state) => state.mainData
 
 
 
-export const { setInput, setCategory } = dataSlice.actions
+export const { setInput, setCategory, setLoading } = dataSlice.actions
 
 export default dataSlice.reducer

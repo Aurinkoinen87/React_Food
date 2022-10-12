@@ -17,7 +17,7 @@ export default function GoToCart() {
       <div class="cart__cart-box">
       <SvgSelector name={'cart'} classSelect={'icon-cart'} />
       </div>
-      <span class="cart__quantity" style={{color: totalQuantity ? 'yellow' : ''}}>{totalQuantity}</span>
+      <span class="cart__quantity" style={{color: totalQuantity ? 'blue' : ''}}>{totalQuantity}</span>
     </div>
   </Link>
   )

@@ -2,11 +2,13 @@ import React, { useEffect } from 'react';
 import './scss/style.scss';
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchData, dataSelector } from './redux/slices/dataSlice'
-import { Header } from './components/Header'
 import { Cart } from './pages/Cart'
 import { Main } from './pages/Main'
 import EmptyCart from './pages/EmptyCart'
 import { Routes, Route } from "react-router-dom";
+import Template from './layout/Template'
+import Item from './pages/Item'
+
 
 
 
@@ -47,19 +49,17 @@ if(option == 3){
 
 
   return (
-<div class="wrapper">
-    <Header />
-<main class="main">
 
     <Routes>
-      <Route path="/" element={<Main data={curData} />}/>
-      <Route path="/cart" element={<Cart />}/>
-      <Route path="/empty_cart" element={<EmptyCart />}/>
+      <Route path="/" element={<Template />}>
+      <Route path="" element={<Main data={curData} />}/>
+      <Route path="cart" element={<Cart />}/>
+      <Route path="empty_cart" element={<EmptyCart />}/>
+      <Route path="item/:id" element={<Item />}/>
       <Route path="*" element={<div class="not-found">Nothing was found</div>}/>
+      </Route>
     </Routes>
-</main>
 
-</div>
   );
 }
 
