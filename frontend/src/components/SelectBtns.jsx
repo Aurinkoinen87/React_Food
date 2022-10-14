@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { setCategory, dataSelector } from '../redux/slices/dataSlice'
+import { setCurrentPage } from '../redux/slices/paginationSlice'
 
 
 export function SelectBtns(){
@@ -10,8 +11,11 @@ export function SelectBtns(){
   const dispatch = useDispatch()
 
   let { category } = useSelector(dataSelector)
+
   const onClickHandler = (val) => {
+    if(category == val) return
     dispatch(setCategory(val))
+    dispatch(setCurrentPage(1))
   }
 
   return (

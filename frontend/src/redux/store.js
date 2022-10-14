@@ -3,6 +3,8 @@ import popUp from './slices/popUpSlice'
 import pagination from './slices/paginationSlice'
 import cart from './slices/cartSlice'
 import mainData from './slices/dataSlice'
+import messages from './slices/msgSlice'
+
 
 
 
@@ -14,5 +16,6 @@ export const store = configureStore({
     pagination,
     cart,
     mainData,
+    messages
   },
 })

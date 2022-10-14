@@ -12,6 +12,25 @@
     line-height: 24px;
     margin: 25px 0 22px;
   }
+  &__pic {
+    position: relative;
+  }
+  &__hidden {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    opacity: 0;
+    color: $black;
+    height: 100%;
+    width: 100%;
+    z-index: 5;
+    transition: all .3s ease-in-out;
+    &:hover {
+      opacity: 1;
+      background-color: rgba($btn-bg, 0.5);
+    }
+  }
   &-img {
     display: block;
     border-radius: 5px;

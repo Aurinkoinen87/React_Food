@@ -3,6 +3,7 @@ import SvgSelector from "../components/SvgSelector"
 import { useSelector, useDispatch } from 'react-redux'
 import { deleteAllFromCart } from '../redux/slices/cartSlice.js'
 import CartPizza from "../components/CartPizza"
+import BackBtn from "../components/BackBtn"
 
 export function Cart() {
 
@@ -47,14 +48,8 @@ return (
         </div>
 
         <div class="btn-block">
-        <Link to={'/'}>
-          <div class="btn-return">
-          <SvgSelector name={'arrow-left'} />
 
-            <div class="btn-return__text">Back</div>
-
-          </div>
-        </Link>
+        <BackBtn />
           <div class="btn-pay">Pay now</div>
 
         </div>

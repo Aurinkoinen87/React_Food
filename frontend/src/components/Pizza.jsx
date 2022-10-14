@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { addToOrder } from '../redux/slices/cartSlice'
+import { showAdded } from '../redux/slices/msgSlice'
 import { PlusMinus } from './PlusMinus'
 import { Link } from "react-router-dom"
 
@@ -26,6 +27,7 @@ const addToCart = () => {
   const pizza = { title, thickness: thickness[thick], diameter, imageUrl, price, count }
   dispatch(addToOrder(pizza))
   setCount(0)
+  dispatch(showAdded(true))
 }
 const plusItem = () => setCount(++count)
 const minusItem = () => {
@@ -41,7 +43,14 @@ console.log(order)
 return (
     <div class="pizza">
       <div className="pizza-img-desc">
-    <Link to={`item/${id}`} ><img class="pizza-img" src={imageUrl} alt="menu__pizza"/></Link>
+    <Link to={`item/${id}`} >
+      <div className="pizza__pic">
+        <div className="pizza__hidden">
+          Read info...
+        </div>
+      <img class="pizza-img" src={imageUrl} alt="menu__pizza"/>
+      </div>
+    </Link>
     <h3 class="pizza__title">{title}</h3>
     </div>
     <div className="pizza-options">
