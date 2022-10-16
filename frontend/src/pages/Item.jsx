@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { dataSelector } from '../redux/slices/dataSlice'
 import { Preloader } from '../components/Preloader'
 import BackBtn from '../components/BackBtn'
+import ItemChoice from "../components/ItemChoice"
 
 function Item() {
 
@@ -19,14 +20,17 @@ function Item() {
   
 
   if(!item) return <Preloader/>
-  const { imageUrl, price, title, sizes, types } = item
+  const { imageUrl, title } = item
 
   return (
     <div className='item-page'>
-      <div className='item-page__item'>
+      <div className='item'>
       <img src={imageUrl} alt="item" />
       <h3>{title}</h3>
       <p>Состав: Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fuga, reiciendis natus officia nam possimus voluptatibus voluptatem, corporis voluptas nobis voluptatum, magni incidunt est qui dignissimos vel iure molestias. Vitae, earum!</p>
+      <div className="item-choice">
+      <ItemChoice {...item} />
+      </div>
       <BackBtn />
       </div>
     </div>

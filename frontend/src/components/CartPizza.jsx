@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux'
 
 
 
-export default function CartPizza({ id, title, thickness, diameter, imageUrl, price, count }) {
+export default function CartPizza({ orderId, title, thickness, diameter, imageUrl, price, count }) {
 
   const dispatch = useDispatch()
 
@@ -25,11 +25,11 @@ export default function CartPizza({ id, title, thickness, diameter, imageUrl, pr
       <div class="cart-pizza__text">{thickness +' ,' + diameter + ' cm'}</div>
 
       <div class="cart-pizza__val">
-        <span onClick={()=> dispatch(minusItem(id))}>
+        <span onClick={()=> dispatch(minusItem(orderId))}>
       <SvgSelector name={'minus'} />
         </span>
         <span class="cart-pizza__num">{count}</span>
-        <span onClick={()=> dispatch(plusItem(id))}>
+        <span onClick={()=> dispatch(plusItem(orderId))}>
       <SvgSelector name={'plus'} classSelect={'icon-plus'} />
         </span>
       </div>
@@ -37,7 +37,7 @@ export default function CartPizza({ id, title, thickness, diameter, imageUrl, pr
       <div class="cart-pizza__price">{price + ' RUR'}</div>
 
       <div className="cart-pizza__count">{'x ' + count}</div>
-      <span onClick={()=> dispatch(deleteFromCart(id))}>
+      <span onClick={()=> dispatch(deleteFromCart(orderId))}>
         <SvgSelector name={'cancel-circle'} />
         </span>
       

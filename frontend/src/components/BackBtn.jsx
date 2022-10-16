@@ -6,7 +6,7 @@ export default function BackBtn() {
 
   const navigate = useNavigate()
 
-  const onClickHandler = () => navigate(-1)
+  const onClickHandler = () => navigate("/")
   return (
     <div class="btn-return" onClick={onClickHandler}>
 
