@@ -1,0 +1,11 @@
+.clean-cart {
+  position: fixed;
+  z-index: 20;
+  color: #000;
+  font-weight: 700;
+  font-size: 30px;
+  &-wrapper {   
+    text-align: center;
+  line-height: 37px;
+  }
+}
