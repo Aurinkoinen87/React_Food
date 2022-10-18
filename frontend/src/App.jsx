@@ -12,6 +12,7 @@ import Item from './pages/Item'
 
 
 
+
 function App() {
 
 
@@ -49,7 +50,6 @@ if(option == 3){
 
 
   return (
-
     <Routes>
       <Route path="/" element={<Template />}>
       <Route path="" element={<Main data={curData} />}/>
@@ -59,7 +59,6 @@ if(option == 3){
       <Route path="*" element={<div class="not-found">Nothing was found</div>}/>
       </Route>
     </Routes>
-
   );
 }
 
