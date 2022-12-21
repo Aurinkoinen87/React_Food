@@ -1,11 +1,30 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import * as axios from 'axios'
+import { default as axios } from 'axios'
+import { RootStateType } from '../store'
 
+
+type ItemType = {
+  id: number
+  imageUrl: string
+  title: string
+  types: number[]
+  sizes: number[]
+  price: number
+  category: number
+  rating: number
+}
+
+type StateType = {
+  data: ItemType[]
+  curData: ItemType[]
+  loading: 'idle' | 'pending' | 'succeeded'
+  category: number
+}
 
 export const fetchData = createAsyncThunk(
   'main_data/fetchData',
   async () => {
-    const response = await axios.get('http://localhost:7000/')
+    const response = await axios.get<ItemType[]>('http://localhost:7000/')
     return response.data
   }
 )
@@ -15,7 +34,7 @@ const initialState = {
   curData: [],
   loading: 'idle', // 'idle' | 'pending' | 'succeeded'
   category: 0
-}
+} as StateType
 
 
 const dataSlice = createSlice({
@@ -53,7 +72,7 @@ const dataSlice = createSlice({
   },
 })
 
-export const dataSelector = (state) => state.mainData
+export const dataSelector = (state: RootStateType) => state.mainData
 
 
 

@@ -19,3 +19,6 @@ export const store = configureStore({
     messages
   },
 })
+
+
+export type RootStateType = ReturnType<typeof store.getState>
