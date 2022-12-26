@@ -2,12 +2,8 @@ import express from 'express'
 import cors from 'cors'
 import fs from 'fs'
 import mongoose from 'mongoose'
-import jwt from 'jsonwebtoken'
-import bcrypt from 'bcrypt'
-import UserModel from './models/User.js'
 import { authValidation } from './validations/auth.js'
-import { validationResult } from 'express-validator'
-
+import { authMe, login, register } from './controllers/auth-controller.js'
 
 mongoose.connect('mongodb+srv://alebastr:RooXVntj81UbqpIK@cluster0.cjwko2o.mongodb.net/food?retryWrites=true&w=majority')
 .then(()=> console.log('DB connected')
@@ -47,34 +43,12 @@ app.get('/', (req, res)=> {
     
 })
 
-app.post('/auth/register', authValidation, async (req, res)=> {
+app.post('/auth/login', login)
+app.post('/auth/register', authValidation, register)
+app.get('/auth/me', authMe)
 
-  try {
-    const errors = validationResult(req)
-    if(!errors.isEmpty()) return res.status(400).json(errors.array())
-  
-    const salt = await bcrypt.genSalt(10)
-    const passwordHash = await bcrypt.hash(req.body.password, salt)
-  
-    const doc = new UserModel({ 
-      name: req.body.name,
-      email: req.body.email,
-      password: passwordHash,
-    })
-  
-    const user = await doc.save()
-  
-    res.json({...user._doc})
-  } 
-  catch(err) {
-    console.log(err)   
-    res.status(500).json({
-      message: 'registration was unsuccessful'
-    })
-  }
-})
 
 
 app.use((req, res)=> {
-    res.status(404)
+  res.status(404)
 })
