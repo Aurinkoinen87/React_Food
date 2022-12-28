@@ -2,7 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import fs from 'fs'
 import mongoose from 'mongoose'
-import { authValidation } from './validations/auth.js'
+import { registerValidation, loginValidation } from './validations/auth.js'
 import { authMe, login, register } from './controllers/auth-controller.js'
 
 mongoose.connect('mongodb+srv://alebastr:RooXVntj81UbqpIK@cluster0.cjwko2o.mongodb.net/food?retryWrites=true&w=majority')
@@ -43,8 +43,8 @@ app.get('/', (req, res)=> {
     
 })
 
-app.post('/auth/login', login)
-app.post('/auth/register', authValidation, register)
+app.post('/auth/login', loginValidation, login)
+app.post('/auth/register', registerValidation, register)
 app.get('/auth/me', authMe)
 
 
